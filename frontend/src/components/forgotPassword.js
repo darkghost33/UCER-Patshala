@@ -17,6 +17,7 @@ export default class forgotPassword extends Component {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            required
             onChange={(e) => this.setState({ email: e.target.value })}
           />
         </div>

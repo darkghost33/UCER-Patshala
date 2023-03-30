@@ -51,6 +51,7 @@ export default class SignUp extends Component {
             type="text"
             className="form-control"
             placeholder="First name"
+            required
             onChange={(e) => this.setState({ fname: e.target.value })}
           />
         </div>
@@ -61,6 +62,7 @@ export default class SignUp extends Component {
             type="text"
             className="form-control"
             placeholder="Last name"
+            required
             onChange={(e) => this.setState({ lname: e.target.value })}
           />
         </div>
@@ -71,6 +73,7 @@ export default class SignUp extends Component {
             type="email"
             className="form-control"
             placeholder="Enter email"
+            required
             onChange={(e) => this.setState({ email: e.target.value })}
           />
         </div>
@@ -81,6 +84,7 @@ export default class SignUp extends Component {
             type="password"
             className="form-control"
             placeholder="Enter password"
+            required
             onChange={(e)=>this.setState({password: e.target.value})}
           />
         </div>
@@ -90,7 +94,7 @@ export default class SignUp extends Component {
             Sign Up
           </button>
         </div>
-        <p className="forgot-password text-right">
+        <p className="forgot-password">
           Already registered <a href="/sign-in">sign in?</a>
         </p>
       </form>

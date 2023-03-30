@@ -35,6 +35,9 @@ export default class Login extends Component {
           window.localStorage.setItem("loggedIn", true);
           window.location.href = "./userData";
         }
+        else{
+          alert("Wrong Password or User Already Exists")
+        }
       });
   }
 
@@ -52,6 +55,7 @@ export default class Login extends Component {
                   type="email"
                   className="form-control"
                   placeholder="Enter email"
+                  required
                   onChange={(e) => this.setState({ email: e.target.value })}
                 />
               </div>
@@ -62,6 +66,7 @@ export default class Login extends Component {
                   type="password"
                   className="form-control"
                   placeholder="Enter password"
+                  required
                   onChange={(e) => this.setState({ password: e.target.value })}
                 />
               </div>

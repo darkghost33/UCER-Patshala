@@ -39,7 +39,7 @@ export default class afterLoginPage extends Component {
 
   render() {
     return (
-      <div className="bg-dark">
+      <div>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
