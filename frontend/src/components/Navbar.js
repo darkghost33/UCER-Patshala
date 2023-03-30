@@ -76,16 +76,14 @@ export default function Navbar() {
               >
                 Search
               </button>
-            <ul className="navbar-nav mb-2 mb-lg-0">
-              <li className="nav-item">
+            
                 <button
                   className="btn btn-outline-primary btn-sm me-2"
                   type="submit"
                 >
                   <a href="/sign-in" style={{textDecoration:"none"}}>Login/SignUp</a>
                 </button>
-              </li>
-            </ul>
+              
             </form>
           </div>
         </div>
