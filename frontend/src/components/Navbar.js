@@ -5,7 +5,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand abc" href="/">
+          <a className="navbar-brand" href="/">
             UCER Pathshala
           </a>
           <button
@@ -22,18 +22,18 @@ export default function Navbar() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                <a className="nav-link active text-dark" aria-current="page" href="/">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link text-dark" href="/">
+                <a className="nav-link  text-dark" href="/">
                   About
                 </a>
               </li>
-              <li className="nav-item dropdown text-dark">
+              <li className="nav-item dropdown">
                 <a
-                  className="nav-link dropdown-toggle text-dark"
+                  className="nav-link dropdown-toggle  text-dark"
                   href="/"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -44,7 +44,7 @@ export default function Navbar() {
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="/">
-                      Computer Science
+                      Computer Scinece
                     </a>
                   </li>
                   <li>
@@ -76,15 +76,14 @@ export default function Navbar() {
               >
                 Search
               </button>
-            
-                <button
-                  className="btn btn-outline-primary btn-sm me-2"
-                  type="submit"
-                >
-                  <a href="/sign-in" style={{textDecoration:"none"}}>Login/SignUp</a>
-                </button>
-              
             </form>
+            <ul className="navbar-nav mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a href="/sign-in" className="btn btn-primary ms-3">
+                  Login/SignUp
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>
