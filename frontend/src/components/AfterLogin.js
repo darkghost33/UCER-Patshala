@@ -50,15 +50,3 @@ export default class afterLoginPage extends Component {
   }
 }
 
-// import React from 'react'
-
-// function afterLoginPage() {
-//     return (
-//               <div>
-//                 Name <h1>Devesh</h1>
-//                 Email <h1>D@gmail.commmmmm</h1>
-//               </div>
-//             );
-// }
-
-// export default afterLoginPage

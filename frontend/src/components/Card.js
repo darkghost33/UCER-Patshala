@@ -6,7 +6,7 @@ export default function Card() {
         padding: "30px",  
     }
   return (
-    <div className='my-4 mx-5' style={{display: "inline-flex"}}>
+    <div className='my-4 mx-5 flexi' >
         <div class="flip-card mx-5">
             <div class="flip-card-inner">
                 <div class="flip-card-front">

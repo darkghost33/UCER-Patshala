@@ -1,3 +1,8 @@
+.flexi{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .flip-card {
     background-color: transparent;
     width: 250px;

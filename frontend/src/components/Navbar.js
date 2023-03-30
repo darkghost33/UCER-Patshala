@@ -27,13 +27,13 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link text-dark" href="/">
                   About
                 </a>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item dropdown text-dark">
                 <a
-                  className="nav-link dropdown-toggle"
+                  className="nav-link dropdown-toggle text-dark"
                   href="/"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -44,7 +44,7 @@ export default function Navbar() {
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="/">
-                      Computer Scinece
+                      Computer Science
                     </a>
                   </li>
                   <li>
@@ -76,7 +76,6 @@ export default function Navbar() {
               >
                 Search
               </button>
-            </form>
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <button
@@ -87,6 +86,7 @@ export default function Navbar() {
                 </button>
               </li>
             </ul>
+            </form>
           </div>
         </div>
       </nav>

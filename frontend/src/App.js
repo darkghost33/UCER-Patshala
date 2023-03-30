@@ -1,16 +1,12 @@
 import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
-// import './App.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import Login from './components/login_component'
-import SignUp from './components/signup_component'
-import NextPage from './components/afterLoginPage'
-import ForgotPassword from './components/forgotPassword'
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
-import Carousel from './components/Carousel'
-import Card from './components/Card'
+import Login from './components/LogIn'
+import SignUp from './components/SignUp'
+import NextPage from './components/AfterLogin'
+import ForgotPassword from './components/ForgotPassword'
+import Home from './Home'
 
 function App() {
 
@@ -18,21 +14,14 @@ function App() {
 
   return (
     <>
-    <Router>
-      <Navbar/>
-      <Carousel/>
-      <Card/>
-      
-            <Routes>
-              {/* <Route exact path='/' element={<Navbar/>}/> */}
-              {/* <Route exact path='/' element={<Footer/>}/> */}
-              {/* <Route exact path="/" element={isLoggedIn == "true" ? <NextPage/> : <Navbar />} /> */}
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
-              <Route path="/userData" element={<NextPage />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-            </Routes>
-      <Footer/>
+    <Router>      
+      <Routes>
+        <Route exact path="/" element={isLoggedIn === "true" ? <NextPage/> : <Home/>} />
+        <Route path="/sign-in" element={isLoggedIn === "true" ? <NextPage/> : <Login />} />
+        <Route path="/sign-up" element={isLoggedIn === "true" ? <NextPage/> : <SignUp />} />
+        <Route path="/userData" element={isLoggedIn === "true" ? <NextPage/> : <Home />} />
+        <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
+      </Routes>
     </Router>
     </>
   )
