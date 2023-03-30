@@ -37,6 +37,10 @@ export default class SignUp extends Component {
           alert("Registeration Successful");
           window.location.href = "./sign-in";
         }
+        else
+        {
+          alert("User already exists.Try registering with another email.")
+        }
       });
   }
 

@@ -35,7 +35,7 @@ export default class Login extends Component {
           window.localStorage.setItem("loggedIn", true);
           window.location.href = "./userData";
         } else {
-          alert("Wrong Password or User Already Exists");
+          alert("Wrong Password or Email");
         }
       });
   }
