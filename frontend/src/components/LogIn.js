@@ -34,9 +34,8 @@ export default class Login extends Component {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
           window.location.href = "./userData";
-        }
-        else{
-          alert("Wrong Password or User Already Exists")
+        } else {
+          alert("Wrong Password or User Already Exists");
         }
       });
   }
@@ -79,9 +78,14 @@ export default class Login extends Component {
                   Submit
                 </button>
               </div>
-              <p className="forgot-password text-right">
-                New User <a href="/sign-up">Sign Up?</a>
-              </p>
+              <div className="d-flex justify-content-between">
+                <p className="forgot-password">
+                  Back to <a href="/">Home</a>
+                </p>
+                <p className="forgot-password">
+                  New User <a href="/sign-up">Sign Up?</a>
+                </p>
+              </div>
             </form>
           </div>
         </div>
