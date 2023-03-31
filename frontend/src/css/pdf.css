@@ -1,0 +1,15 @@
+.split {
+    height: 50%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    overflow-x: hidden;
+  }
+  .top {
+    background-color: #f1f1f1;
+    bottom: 50%;
+  }
+  .bottom {
+    background-color: #ffffff;
+    top: 50%;
+  }

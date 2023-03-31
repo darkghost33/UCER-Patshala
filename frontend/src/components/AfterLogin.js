@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Pdf from './Pdf'
 export default class afterLoginPage extends Component {
   constructor(props) {
     super(props);
@@ -96,6 +96,8 @@ export default class afterLoginPage extends Component {
             </div>
           </div>
         </nav>
+        <Pdf></Pdf>
+        
 
         {/* <div>
           Name <h1>{this.state.userData.fname}</h1>
