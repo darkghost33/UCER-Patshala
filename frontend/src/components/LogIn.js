@@ -1,22 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "../css/auth_css.css";
 
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit(e) {
+export default function Login(){
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const handleSubmit= (e) => {
     e.preventDefault();
-    const { email, password } = this.state;
     console.log(email, password);
     fetch("http://localhost:5000/login-user", {
       method: "POST",
-      crossDomai: true,
+      crossDomain: true,
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
@@ -29,7 +22,7 @@ export default class Login extends Component {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
-        if (data.status == "ok") {
+        if (data.status === "ok") {
           alert("Login Successful");
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
@@ -40,12 +33,12 @@ export default class Login extends Component {
       });
   }
 
-  render() {
+
     return (
       <div className="App">
         <div className="auth-wrapper">
           <div className="auth-inner">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={handleSubmit}>
               <h3>Sign In</h3>
 
               <div className="mb-3">
@@ -55,7 +48,7 @@ export default class Login extends Component {
                   className="form-control"
                   placeholder="Enter email"
                   required
-                  onChange={(e) => this.setState({ email: e.target.value })}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -66,7 +59,7 @@ export default class Login extends Component {
                   className="form-control"
                   placeholder="Enter password"
                   required
-                  onChange={(e) => this.setState({ password: e.target.value })}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <p className="forgot-password text-right mb-3">
@@ -92,4 +85,3 @@ export default class Login extends Component {
       </div>
     );
   }
-}

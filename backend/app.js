@@ -27,7 +27,7 @@ require("./userDetails");
 const User = mongoose.model("UserInfo");
 
 app.post("/register", async (req, res) => {
-  const { fname, lname, email, password } = req.body;
+  const { fname, lname, email, password, userType } = req.body;
   const encryptedPassword = await bcrypt.hash(password, 10);
   try {
     const oldUser = await User.findOne({ email });
@@ -39,6 +39,7 @@ app.post("/register", async (req, res) => {
       lname,
       email,
       password: encryptedPassword,
+      userType,
     });
     res.send({ status: "ok" });
   } catch (error) {
@@ -52,9 +53,9 @@ app.post("/login-user", async (req, res) => {
   if (!user) {
     return res.json({ error: "User Not Found" });
   }
-  if(await bcrypt.compare(password, user.password)) {
+  if (await bcrypt.compare(password, user.password)) {
     const token = jwt.sign({ email: user.email }, JWT_SECRET, {
-      expiresIn: "10m",
+      expiresIn: "10h",
     });
     if (res.status(201)) {
       return res.json({ status: "ok", data: token });
@@ -91,10 +92,32 @@ app.post("/userData", async (req, res) => {
   } catch (error) {}
 });
 
+app.post("/forgot-password", async (req, res) => {});
 
-app.post("/forgot-password",async(req,res) => {
+app.get("/getAllUser", async (req, res) => {
+  try {
+    const allUser = await User.find({});
+    res.send({ status: "ok", data: allUser });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
-})
+app.post("/deleteUser", async (req, res) => {
+  const { userid } = req.body;
+  console.log(userid);
+  User.deleteOne({ _id: userid })
+    .then((result) => {
+      res.send({ status: "ok", data: "Deleted" });
+      console.log(result);
+    })
+    .catch((error) => {
+      res
+      .status(500)
+      .send({ status: "error", message: "Failed to delete user" });
+      console.log(error);
+    });
+});
 
 app.listen(5000, () => {
   console.log("Server Started");

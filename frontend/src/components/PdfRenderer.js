@@ -34,7 +34,7 @@ function PdfRenderer() {
 		<br/>
 		<br/><br/><br/><br/><br/><br/><br/>
 		</object>        
-		<div class='p'>      
+		<div className='p'>      
         <object data=
               
                       "D:\Big Data\1653330982166BIG-DATA-Notes-EIOV\Notes\Unit 3 Big Data Tutorial.pdf"
