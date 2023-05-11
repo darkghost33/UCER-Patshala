@@ -112,7 +112,7 @@ app.post("/forgot-password", async (req, res) => {
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
-      secure: false,
+      // secure: false,
       auth: {
         user: "myprojec4@gmail.com",
         pass: "lwzwsszdugrjnufe",
@@ -124,9 +124,9 @@ app.post("/forgot-password", async (req, res) => {
 
     var mailOptions = {
       from: "myprojec4@gmail.com",
-      to: "deveshmukherjee77@gmail.com",
-      subject: "Sending Email using Node.js",
-      text: link,
+      to: email,
+      subject: "Password Reset",
+      text: "Click on this link to change your password.The link is valid for 10 minutes only - " + link ,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {

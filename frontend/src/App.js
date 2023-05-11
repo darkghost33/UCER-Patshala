@@ -7,6 +7,7 @@ import SignUp from './components/SignUp'
 import NextPage from './components/AfterLogin'
 import ForgotPassword from './components/ForgotPassword'
 import Home from './Home'
+import AddNewUser from './components/AddNewUser'
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/sign-in" element={isLoggedIn === "true" ? <NextPage/> : <Login />} />
         <Route path="/sign-up" element={isLoggedIn === "true" ? <NextPage/> : <SignUp />} />
         <Route path="/userData" element={isLoggedIn === "true" ? <NextPage/> : <Home />} />
+        <Route path="/addNewUser" element={isLoggedIn === "true" ? <AddNewUser/> : <Home />} />
         <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
       </Routes>
     </Router>

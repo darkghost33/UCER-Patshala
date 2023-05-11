@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/auth_css.css";
 
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +25,7 @@ export default function AdminHome({ userData }) {
   const deleteUser = (id, name) => {
     console.log("delete user" + id);
     if (window.confirm(`Are you sure you want to delete ${name}`)) {
-       fetch("http://localhost:5000/deleteUser", {
+      fetch("http://localhost:5000/deleteUser", {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -32,12 +33,12 @@ export default function AdminHome({ userData }) {
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          userid:id
+          userid: id,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-            alert(data.data);
+          alert(data.data);
         });
     } else {
     }
@@ -49,6 +50,9 @@ export default function AdminHome({ userData }) {
         <div className="auth-inner" style={{ width: "auto" }}>
           Name<h1>{userData.fname}</h1>
           Email<h1>{userData.email}</h1>
+          <Link to={"/addNewUser"}>
+            <button className="btn btn-primary">Add New User</button>
+          </Link>
           <table style={{ width: 500, border: "2px solid black" }}>
             <tr>
               <th>Name</th>
@@ -75,6 +79,7 @@ export default function AdminHome({ userData }) {
           <button onClick={logOut} className="btn btn-primary">
             Log Out
           </button>
+          
         </div>
       </div>
     </div>
