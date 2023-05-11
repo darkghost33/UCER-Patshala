@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "../css/auth_css.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function SignUp() {
   const [fname, setFname] = useState("");
@@ -48,11 +48,12 @@ export default function SignUp() {
         <div className="auth-inner" style={{ position: "relative" }}>
           <Link to="/userData" style={{ textDecoration: 'none' }}>
           <FontAwesomeIcon
-            icon={faClose}
+            icon={faArrowLeft}
+            size="lg"
             style={{
                 position: "absolute",
                 top: 10,
-                right: 15,
+                left: 15,
                 fontSize: "24px",
                 cursor: "pointer",
                 textDecoration:"none",

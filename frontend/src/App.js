@@ -8,6 +8,7 @@ import NextPage from './components/AfterLogin'
 import ForgotPassword from './components/ForgotPassword'
 import Home from './Home'
 import AddNewUser from './components/AddNewUser'
+import ViewAllUser from './components/ViewAllUser'
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/sign-up" element={isLoggedIn === "true" ? <NextPage/> : <SignUp />} />
         <Route path="/userData" element={isLoggedIn === "true" ? <NextPage/> : <Home />} />
         <Route path="/addNewUser" element={isLoggedIn === "true" ? <AddNewUser/> : <Home />} />
+        <Route path="/viewAllUser" element={isLoggedIn === "true" ? <ViewAllUser/> : <Home />} />
         <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
       </Routes>
     </Router>

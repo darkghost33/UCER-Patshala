@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import AdminHome from "./AdminHome";
 import UserHome from "./UserHome";
+import LoadingScreen from "./LoadingScreen";
 
 export default function AfterLoginPage() {
   const [userData, setUserData] = useState("");
-  const [Admin, setAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:5000/userData", {
@@ -21,10 +23,11 @@ export default function AfterLoginPage() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userData");
-        if (data.data.userType === "Admin") {
-          setAdmin(true);
-        }
-        setUserData(data.data);
+        setTimeout(() => {
+          setIsAdmin(data.data.userType === "Admin");
+          setLoading(false);
+          setUserData(data.data);
+        }, 300);
         if (data.data === "Token Expired") {
           alert("Token Expired!! Please login again");
           window.localStorage.clear();
@@ -33,9 +36,11 @@ export default function AfterLoginPage() {
       });
   }, []);
 
-  return Admin ? (
-    <AdminHome userData={userData}></AdminHome>
+  return loading ? (
+    <LoadingScreen></LoadingScreen>
+  ) : isAdmin ? (
+    <AdminHome userData={userData} />
   ) : (
-    <UserHome userData={userData}></UserHome>
+    <UserHome userData={userData} />
   );
 }
