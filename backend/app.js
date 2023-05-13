@@ -28,8 +28,30 @@ mongoose
   .catch((e) => console.log(e));
 
 require("./userDetails");
+require("./pdfDetail");
 
 const User = mongoose.model("UserInfo");
+const Pdf = mongoose.model("PdfInfo");
+
+app.post("/addPdf", async (req, res) => {
+  const { branch, year, subject, unit } = req.body;
+
+  try {
+    const oldPdf = await Pdf.findOne({ branch, year, subject, unit });
+    if (oldPdf) {
+      return res.send({ error: "Pdf Exists" });
+    }
+    await Pdf.create({
+      branch,
+      year,
+      subject,
+      unit,
+    });
+    res.send({ status: "ok" });
+  } catch (error) {
+    res.send({ status: "error" });
+  }
+});
 
 app.post("/register", async (req, res) => {
   const { fname, lname, email, password, userType } = req.body;
@@ -126,7 +148,9 @@ app.post("/forgot-password", async (req, res) => {
       from: "myprojec4@gmail.com",
       to: email,
       subject: "Password Reset",
-      text: "Click on this link to change your password.The link is valid for 10 minutes only - " + link ,
+      text:
+        "Click on this link to change your password.The link is valid for 10 minutes only - " +
+        link,
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
