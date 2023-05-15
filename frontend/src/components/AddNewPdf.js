@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import LoadingScreen from "./LoadingScreen";
+import { storage } from "../Firebase";
+import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
+import { v4 } from "uuid";
 
 export default function AddNewPdf() {
   const [pdfFile, setPdfFile] = useState(null);
@@ -9,43 +13,54 @@ export default function AddNewPdf() {
   const [year, setYear] = useState("");
   const [subject, setSubject] = useState("");
   const [unit, setUnit] = useState("");
+  const [loading, setLoading] = useState(false);
+
   console.log(pdfFile, branch, year, subject, unit);
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
 
-    const formData = new FormData();
-    formData.append("pdfFile", pdfFile);
-    formData.append("branch", branch);
-    formData.append("year", year);
-    formData.append("subject", subject);
-    formData.append("unit", unit);
-    console.log(formData);
-
-    fetch("http://localhost:5000/addPdf", {
-      method: "POST",
-      crossDomain: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.status === "ok") {
-          alert("New Pdf added Successfully");
-          window.location.href = "./userData";
-        } else {
-          alert("Pdf file already exists!!");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+    if (pdfFile === null) {
+      return;
+    }
+    const pdfRef = ref(storage, `pdfs/${pdfFile.name + v4()}`);
+    uploadBytes(pdfRef, pdfFile).then(() => {
+      getDownloadURL(pdfRef).then((pdfUrl) => {
+        console.log(pdfUrl);
+        fetch("http://localhost:5000/addPdf", {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            branch,
+            year,
+            subject,
+            unit,
+            pdfUrl,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data, "PDF DETAILS");
+            if (data.status === "ok") {
+              alert("Pdf Uploaded Successfully");
+              window.location.href = "./userData";
+            } else {
+              alert("Some error occurred or your internet broke!!");
+            }
+          });
       });
+      setLoading(false);
+    });
   };
 
-  return (
+  return loading ? (
+    <LoadingScreen></LoadingScreen>
+  ) : (
     <div className="App">
       <div className="auth-wrapper">
         <div className="auth-inner" style={{ position: "relative" }}>
@@ -91,6 +106,7 @@ export default function AddNewPdf() {
                   id="pdfFile"
                   name="pdfFile"
                   accept=".pdf"
+                  required
                   onChange={(e) => {
                     setPdfFile(e.target.files[0]);
                     console.log(e.target.files);
@@ -101,6 +117,7 @@ export default function AddNewPdf() {
                 <label>Branch:</label>
                 <select
                   id="branch-select"
+                  required
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
                 >
@@ -115,6 +132,7 @@ export default function AddNewPdf() {
                 <label>Year:</label>
                 <select
                   id="year-select"
+                  required
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 >
@@ -132,6 +150,7 @@ export default function AddNewPdf() {
                   id="subject"
                   name="subject"
                   placeholder="Enter subject name"
+                  required
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                 />
@@ -141,6 +160,7 @@ export default function AddNewPdf() {
                 <select
                   id="unit-select"
                   value={unit}
+                  required
                   onChange={(e) => setUnit(e.target.value)}
                 >
                   <option value="">Select unit</option>

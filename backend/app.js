@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -16,8 +17,7 @@ var nodemailer = require("nodemailer");
 const mongoUrl = "mongodb://0.0.0.0:27017";
 
 const JWT_SECRET =
-  "sjdkfkjsdfklsdmflksd()#$%*($@1093821094810291049;ptoyuqoiemcnvkgjlz'.,][";
-
+  process.env.REACT_APP_JWT_SECRET;
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
@@ -34,18 +34,16 @@ const User = mongoose.model("UserInfo");
 const Pdf = mongoose.model("PdfInfo");
 
 app.post("/addPdf", async (req, res) => {
-  const { branch, year, subject, unit } = req.body;
+  console.log(req.body);
+  const { branch, year, subject, unit, pdfUrl } = req.body;
 
   try {
-    const oldPdf = await Pdf.findOne({ branch, year, subject, unit });
-    if (oldPdf) {
-      return res.send({ error: "Pdf Exists" });
-    }
     await Pdf.create({
       branch,
       year,
       subject,
       unit,
+      pdfUrl
     });
     res.send({ status: "ok" });
   } catch (error) {
@@ -136,16 +134,16 @@ app.post("/forgot-password", async (req, res) => {
       service: "gmail",
       // secure: false,
       auth: {
-        user: "myprojec4@gmail.com",
-        pass: "lwzwsszdugrjnufe",
+        user: process.env.REACT_APP_GMAIL,
+        pass: process.env.REACT_APP_GMAIL_PASSKEY,
       },
       tls: {
         rejectUnauthorized: false,
       },
     });
-
+    console.log(process.env.REACT_APP_GMAIL);
     var mailOptions = {
-      from: "myprojec4@gmail.com",
+      from: `"${process.env.REACT_APP_GMAIL}"`,
       to: email,
       subject: "Password Reset",
       text:
