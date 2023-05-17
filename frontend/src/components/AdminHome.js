@@ -29,6 +29,9 @@ export default function AdminHome({ userData }) {
           <Link to={"/addNewPdf"}>
             <button className="btn btn-primary">Add New Pdf</button>
           </Link>
+          <Link to={"/viewAllUploadedPdf"}>
+            <button className="btn btn-primary">View/Delete Uploaded Pdfs</button>
+          </Link>
           <button onClick={logOut} className="btn btn-primary">
             Log Out
           </button>

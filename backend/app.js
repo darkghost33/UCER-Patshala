@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-require('dotenv').config();
+require("dotenv").config();
 
 const app = express();
 app.use(express.json());
@@ -16,8 +16,7 @@ var nodemailer = require("nodemailer");
 
 const mongoUrl = "mongodb://0.0.0.0:27017";
 
-const JWT_SECRET =
-  process.env.REACT_APP_JWT_SECRET;
+const JWT_SECRET = process.env.REACT_APP_JWT_SECRET;
 mongoose
   .connect(mongoUrl, {
     useNewUrlParser: true,
@@ -43,7 +42,7 @@ app.post("/addPdf", async (req, res) => {
       year,
       subject,
       unit,
-      pdfUrl
+      pdfUrl,
     });
     res.send({ status: "ok" });
   } catch (error) {
@@ -213,6 +212,29 @@ app.get("/getAllUser", async (req, res) => {
     console.log(error);
   }
 });
+app.get("/getAllUploadedPdf", async (req, res) => {
+  try {
+    const allUploadedPdf = await Pdf.find({});
+    res.send({ status: "ok", data: allUploadedPdf });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// app.get("/getAllPdf", async (req, res) => {
+//   const { branch, year, subject, unit } = req.query;
+//   try {
+//     const allPdf = await Pdf.findOne({
+//       branch: branch,
+//       year: year,
+//       subject: subject,
+//       unit: unit,
+//     });
+//     res.send({ status: "ok", data: allPdf });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
 
 app.post("/deleteUser", async (req, res) => {
   const { userid } = req.body;
@@ -226,6 +248,21 @@ app.post("/deleteUser", async (req, res) => {
       res
         .status(500)
         .send({ status: "error", message: "Failed to delete user" });
+      console.log(error);
+    });
+});
+app.post("/deleteUploadedPdf", async (req, res) => {
+  const { pdfid } = req.body;
+  console.log(pdfid);
+  Pdf.deleteOne({ _id: pdfid })
+    .then((result) => {
+      res.send({ status: "ok", data: "Deleted" });
+      console.log(result);
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .send({ status: "error", message: "Failed to delete pdf entry!!" });
       console.log(error);
     });
 });

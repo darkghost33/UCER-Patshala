@@ -37,7 +37,7 @@ export default function AfterLoginPage() {
   }, []);
 
   return loading ? (
-    <LoadingScreen></LoadingScreen>
+    <LoadingScreen text="Loading"></LoadingScreen>
   ) : isAdmin ? (
     <AdminHome userData={userData} />
   ) : (

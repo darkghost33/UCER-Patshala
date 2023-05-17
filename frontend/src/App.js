@@ -10,6 +10,8 @@ import Home from './Home'
 import AddNewUser from './components/AddNewUser'
 import ViewAllUser from './components/ViewAllUser'
 import AddNewPdf from './components/AddNewPdf'
+import UserHome from './components/UserHome'
+import ViewAllUploadedPdf from './components/ViewAllUploadedPdf'
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
         <Route path="/addNewUser" element={isLoggedIn === "true" ? <AddNewUser/> : <Home />} />
         <Route path="/addNewPdf" element={isLoggedIn === "true" ? <AddNewPdf/> : <Home />} />
         <Route path="/viewAllUser" element={isLoggedIn === "true" ? <ViewAllUser/> : <Home />} />
+        <Route path="/viewAllUploadedPdf" element={isLoggedIn === "true" ? <ViewAllUploadedPdf/> : <Home />} />
+        <Route path="/getAllPdf" element={isLoggedIn === "true" ? <UserHome/> : <Home />} />
         <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
       </Routes>
     </Router>

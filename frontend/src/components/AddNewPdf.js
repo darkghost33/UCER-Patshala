@@ -59,7 +59,7 @@ export default function AddNewPdf() {
   };
 
   return loading ? (
-    <LoadingScreen></LoadingScreen>
+    <LoadingScreen text="Uploading please wait..."></LoadingScreen>
   ) : (
     <div className="App">
       <div className="auth-wrapper">
