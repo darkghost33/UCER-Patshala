@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import LoadingScreen from "./LoadingScreen";
-import { storage } from "../Firebase";
+import LoadingScreen from "../../components/LoadingScreen";
+import { storage } from "../../Firebase";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 import { v4 } from "uuid";
 

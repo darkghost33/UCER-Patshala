@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AdminHome from "./AdminHome";
-import UserHome from "./UserHome";
-import LoadingScreen from "./LoadingScreen";
+import AdminHome from "./Admin Pages/AdminHome";
+import UserHome from "./User Pages/UserHome";
+import LoadingScreen from "../components/LoadingScreen";
 
 export default function AfterLoginPage() {
   const [userData, setUserData] = useState("");

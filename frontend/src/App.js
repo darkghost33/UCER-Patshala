@@ -2,16 +2,17 @@ import React from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import Login from './components/LogIn'
-import SignUp from './components/SignUp'
-import NextPage from './components/AfterLogin'
-import ForgotPassword from './components/ForgotPassword'
+import Login from './Pages/LogIn'
+import SignUp from './Pages/SignUp'
+import NextPage from './Pages/AfterLogin'
+import ForgotPassword from './Pages/ForgotPassword'
 import Home from './Home'
-import AddNewUser from './components/AddNewUser'
-import ViewAllUser from './components/ViewAllUser'
-import AddNewPdf from './components/AddNewPdf'
-import UserHome from './components/UserHome'
-import ViewAllUploadedPdf from './components/ViewAllUploadedPdf'
+import AddNewUser from './Pages/Admin Pages/AddNewUser'
+import ViewAllUser from './Pages/Admin Pages/ViewAllUser'
+import AddNewPdf from './Pages/Admin Pages/AddNewPdf'
+import UserHome from './Pages/User Pages/UserHome'
+import ViewAllUploadedPdf from './Pages/Admin Pages/ViewAllUploadedPdf'
+import UserFindPdf from './Pages/User Pages/UserFindPdf'
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/addNewPdf" element={isLoggedIn === "true" ? <AddNewPdf/> : <Home />} />
         <Route path="/viewAllUser" element={isLoggedIn === "true" ? <ViewAllUser/> : <Home />} />
         <Route path="/viewAllUploadedPdf" element={isLoggedIn === "true" ? <ViewAllUploadedPdf/> : <Home />} />
+        <Route path="/userFindPdf" element={isLoggedIn === "true" ? <UserFindPdf/> : <Home />} />
         <Route path="/getAllPdf" element={isLoggedIn === "true" ? <UserHome/> : <Home />} />
         <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
       </Routes>
