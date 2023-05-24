@@ -128,7 +128,6 @@ export default function UserFindPdf() {
               }}
             />
           </Link>
-          {/* advanced search on searched data functionality- to be implemented */}
           <input
             type="text"
             placeholder="Search the result by Branch or Year or Subject or Unit"

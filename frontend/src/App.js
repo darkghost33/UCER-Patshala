@@ -13,6 +13,7 @@ import AddNewPdf from './Pages/Admin Pages/AddNewPdf'
 import UserHome from './Pages/User Pages/UserHome'
 import ViewAllUploadedPdf from './Pages/Admin Pages/ViewAllUploadedPdf'
 import UserFindPdf from './Pages/User Pages/UserFindPdf'
+import TakeTest from './Pages/User Pages/TakeTest'
 
 function App() {
 
@@ -26,13 +27,14 @@ function App() {
         <Route path="/sign-in" element={isLoggedIn === "true" ? <NextPage/> : <Login />} />
         <Route path="/sign-up" element={isLoggedIn === "true" ? <NextPage/> : <SignUp />} />
         <Route path="/userData" element={isLoggedIn === "true" ? <NextPage/> : <Home />} />
+        <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
         <Route path="/addNewUser" element={isLoggedIn === "true" ? <AddNewUser/> : <Home />} />
         <Route path="/addNewPdf" element={isLoggedIn === "true" ? <AddNewPdf/> : <Home />} />
         <Route path="/viewAllUser" element={isLoggedIn === "true" ? <ViewAllUser/> : <Home />} />
         <Route path="/viewAllUploadedPdf" element={isLoggedIn === "true" ? <ViewAllUploadedPdf/> : <Home />} />
         <Route path="/userFindPdf" element={isLoggedIn === "true" ? <UserFindPdf/> : <Home />} />
         <Route path="/getAllPdf" element={isLoggedIn === "true" ? <UserHome/> : <Home />} />
-        <Route path="/forgot-password" element={isLoggedIn === "true" ? <NextPage/> : <ForgotPassword />} />
+        <Route path="/takeTest" element={isLoggedIn === "true" ? <TakeTest/> : <Home />} />
       </Routes>
     </Router>
     </>
