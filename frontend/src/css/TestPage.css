@@ -2,15 +2,19 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+
   }
-  body{
+  body .wrapper{
+    border: 2px solid red;
     display: flex;
     align-items: center;
-    justify-content: center;    
-    background-color: #61a1fa;
+    flex-direction: column;
+    justify-content: flex-start;    
     min-height: 100vh;
     width: 100%;
+    background-color: #61a1fa;
   }
+  
   
   .container {
     display: flex;

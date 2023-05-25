@@ -79,7 +79,7 @@ export default function TakeTest() {
   };
 
   return (
-    <div>
+    <div className="wrapper">
       <p className="heading-txt">TEST</p>
       <div className="container">
         {!testStarted ? (

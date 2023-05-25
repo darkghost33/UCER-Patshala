@@ -31,6 +31,11 @@ export default function Navbar() {
                   About
                 </a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link  text-dark" href="/webCode">
+                  Web Code Editor
+                </a>
+              </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle  text-dark"

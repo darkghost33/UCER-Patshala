@@ -31,7 +31,6 @@ export default function Footer() {
                         </ul>
                     </div>
                 </div>
-                
             </div>
         </footer>
     </div>
