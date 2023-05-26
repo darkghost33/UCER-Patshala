@@ -26,9 +26,9 @@ export default function UserHome({ userData }) {
           <Link to={"/takeTest"}>
             <button className="btn btn-primary">Take Test</button>
           </Link> 
-          {/* <Link to={"/userFindPdf"}>
-            <button className="btn btn-primary">Find/Download Subject Pdfs</button>
-          </Link> */}
+          <Link to={"/notes"}>
+            <button className="btn btn-primary">Notes</button>
+          </Link>
           <Link to={"/userFindAllPdf"}>
             <button className="btn btn-primary">View & Search All Pdf</button>
           </Link>

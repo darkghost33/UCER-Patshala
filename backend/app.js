@@ -214,34 +214,20 @@ app.get("/getAllUser", async (req, res) => {
 });
 app.get("/getAllUploadedPdf", async (req, res) => {
   try {
-    const allUploadedPdf = await Pdf.find({});
+    const { branch, year } = req.query;
+    let query = {};
+    if (branch && year) {
+      query = {
+        branch,
+        year,
+      };
+    }
+    const allUploadedPdf = await Pdf.find(query);
     res.send({ status: "ok", data: allUploadedPdf });
   } catch (error) {
     console.log(error);
+    res.status(500).send({ status: "error", message: "Internal Server Error" });
   }
-  // try {
-  //   const { branch, year, unit } = req.query;
-
-  //   const query = Pdf.find();
-
-  //   if (branch) {
-  //     query.where("branch").equals(branch);
-  //   }
-
-  //   if (year) {
-  //     query.where("year").equals(year);
-  //   }
-
-  //   if (unit) {
-  //     query.where("unit").equals(unit);
-  //   }
-
-  //   const allUploadedPdf = await query.exec();
-  //   res.send({ status: "ok", data: allUploadedPdf });
-  // } catch (error) {
-  //   console.log(error);
-  //   res.status(500).send({ status: "error", message: "Internal Server Error" });
-  // }
 });
 
 app.post("/deleteUser", async (req, res) => {

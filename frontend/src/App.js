@@ -15,6 +15,7 @@ import ViewAllUploadedPdf from './Pages/Admin Pages/ViewAllUploadedPdf'
 import UserFindAllPdf from './Pages/User Pages/UserFindAllPdf'
 import TakeTest from './Pages/User Pages/TakeTest'
 import WebCode from './Pages/CodeEditor/WebCode'
+import NotesPage from './Pages/User Pages/NotesPage'
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/userFindAllPdf" element={isLoggedIn === "true" ? <UserFindAllPdf/> : <Home />} />
         <Route path="/getAllPdf" element={isLoggedIn === "true" ? <UserHome/> : <Home />} />
         <Route path="/takeTest" element={isLoggedIn === "true" ? <TakeTest/> : <Home />} />
+        <Route path="/notes" element={isLoggedIn === "true" ? <NotesPage/> : <Home />} />
         <Route path="/webCode" element={<WebCode/>} />
       </Routes>
     </Router>
