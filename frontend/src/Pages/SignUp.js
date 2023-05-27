@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/auth_css.css";
+import { toast, ToastContainer } from "../components/Toastify";
 export default function SignUp() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -33,10 +34,14 @@ export default function SignUp() {
         .then((data) => {
           console.log(data, "userRegister");
           if (data.status === "ok") {
-            alert("Registeration Successful");
+            toast.success("Registeration Successful");
+            // alert("Registeration Successful");
+            setTimeout(() => {
             window.location.href = "./sign-in";
+          },2000);
           } else {
-            alert("User already exists.Try registering with another email.");
+            toast.error("User already exists.Try registering with another email.");
+            // alert("User already exists.Try registering with another email.");
           }
         });
     }
@@ -44,6 +49,7 @@ export default function SignUp() {
 
   return (
     <div className="App">
+      <ToastContainer autoClose={1500} position="top-center" closeButton={false}></ToastContainer>
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form onSubmit={handleSubmit}>
