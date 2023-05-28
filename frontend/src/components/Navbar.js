@@ -1,97 +1,76 @@
-import React from "react";
-// import "./LogIn";
-export default function Navbar() {
+import React from 'react';
+import '../css/navbar.css'
+const Navbar = () => {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            UCER Pathshala
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active text-dark" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link  text-dark" href="/">
-                  About
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link  text-dark" href="/webCode">
-                  Web Code Editor
-                </a>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle  text-dark"
-                  href="/"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Courses
-                </a>
-                <ul className="dropdown-menu">
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Computer Scinece
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Information Technology
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                className="btn btn-outline-success btn-sm me-2"
-                type="submit"
-              >
-                Search
-              </button>
-            </form>
-            <ul className="navbar-nav mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a href="/sign-in" className="btn btn-primary ms-3">
-                  Login/SignUp
-                </a>
-              </li>
-            </ul>
-          </div>
+      <nav>
+        <div className="wraper">
+          <div className="logo"><a href="/"><img src='./images/logo.png' alt='img'></img></a></div>
+          <input type="radio" name="slider" id="menu-btn" />
+          <input type="radio" name="slider" id="close-btn" />
+          <ul className="nav-links">
+            <label htmlFor="close-btn" className="btn close-btn"><i className="fas fa-times"></i></label>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About</a></li>
+            <li>
+              <a href="/" className="desktop-item">YEAR</a>
+              <input type="checkbox" id="showDrop" />
+              <label htmlFor="showDrop" className="mobile-item">YEAR</label>
+              <ul className="drop-menu">
+                <li><a href="/">FIRST YEAR</a></li>
+                <li><a href="/">SECOND YEAR</a></li>
+                <li><a href="/">THIRD YEAR</a></li>
+                <li><a href="/">FOURTH YEAR</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/" className="desktop-item">COURSES</a>
+              <input type="checkbox" id="showMega" />
+              <label htmlFor="showMega" className="mobile-item">COURSES</label>
+              <div className="mega-box">
+                <div className="content">
+                  <div className="row">
+                    <img src="img.png" alt="" />
+                  </div>
+                  <div className="row">
+                    <header>Design Services</header>
+                    <ul className="mega-links">
+                      <li><a href="/">Graphics</a></li>
+                      <li><a href="/">Vectors</a></li>
+                      <li><a href="/">Business cards</a></li>
+                      <li><a href="/">Custom logo</a></li>
+                    </ul>
+                  </div>
+                  <div className="row">
+                    <header>Email Services</header>
+                    <ul className="mega-links">
+                      <li><a href="/">Personal Email</a></li>
+                      <li><a href="/">Business Email</a></li>
+                      <li><a href="/">Mobile Email</a></li>
+                      <li><a href="/">Web Marketing</a></li>
+                    </ul>
+                  </div>
+                  <div className="row">
+                    <header>Security services</header>
+                    <ul className="mega-links">
+                      <li><a href="/">Site Seal</a></li>
+                      <li><a href="/">VPS Hosting</a></li>
+                      <li><a href="/">Privacy Seal</a></li>
+                      <li><a href="/">Website design</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li><a href="/">Feedback</a></li>
+          </ul>
+          <label htmlFor="menu-btn" className="btn menu-btn"><i className="fas fa-bars"></i></label>
         </div>
       </nav>
+
+      
     </div>
   );
-}
+};
+
+export default Navbar;
