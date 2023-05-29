@@ -6,6 +6,7 @@ import LoadingScreen from "../../components/LoadingScreen";
 import { storage } from "../../Firebase";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 import { v4 } from "uuid";
+import Navbar from "../../components/Navbar";
 
 export default function AddNewPdf() {
   const [pdfFile, setPdfFile] = useState(null);
@@ -62,6 +63,10 @@ export default function AddNewPdf() {
     <LoadingScreen text="Uploading please wait..."></LoadingScreen>
   ) : (
     <div className="App">
+      <Navbar
+        menuItems={["Home",]}
+        loginText="Welcome Admin"
+      ></Navbar>
       <div className="auth-wrapper">
         <div className="auth-inner" style={{ position: "relative" }}>
           <Link to="/userData" style={{ textDecoration: "none" }}>

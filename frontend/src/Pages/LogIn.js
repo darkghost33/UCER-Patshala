@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/auth_css.css";
 import { toast, ToastContainer } from "../components/Toastify";
-
+import Navbar from "../components/Navbar";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,6 +40,10 @@ export default function Login() {
 
   return (
     <div className="App">
+      <Navbar
+        menuItems={["Home", "About", "WebCode","Contact"]}
+        loginText=""
+      />
       <ToastContainer autoClose={1500} position="top-center" closeButton={false}></ToastContainer>
       <div className="auth-wrapper">
         <div className="auth-inner">

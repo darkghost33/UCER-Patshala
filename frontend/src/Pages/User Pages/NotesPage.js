@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import Navbar from "../../components/Navbar";
 
 export default function NotesPage() {
   const [branch, setBranch] = useState("");
   const [year, setYear] = useState("");
   const [loading, setLoading] = useState(true);
   const [notesdata, setNotesData] = useState([]);
-
   const handleView = (e) => {
     e.preventDefault();
     setLoading(false);
@@ -24,14 +24,19 @@ export default function NotesPage() {
 
   return (
     <>
+      <Navbar
+        menuItems={["Home", "About", "WebCode", "Contact"]}
+        loginText="Welcome User"
+      ></Navbar>
       <div
         style={{
           width: "auto",
+          marginTop: "70px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          border: "2px solid red",
+          // border: "2px solid red",
         }}
       >
         <form
@@ -42,10 +47,9 @@ export default function NotesPage() {
             alignItems: "center",
             justifyContent: "center",
             gap: "10px",
-            border: "2px solid green",
+            // border: "2px solid green",
           }}
         >
-          {/* Add Navbar Here */}
           <div>
             <label>Branch:</label>
             <select
@@ -92,30 +96,51 @@ export default function NotesPage() {
           </>
         ) : (
           <>
-            <img
-              src="https://media.tenor.com/u8M7kk5ZXmwAAAAM/banana-cat-crying.gif"
-              alt="img"
-            ></img>
-            <h2>Notes nhi mila.....ehhhh ehhhh</h2>
-            {/* <iframe width="600" height="400" src="https://www.youtube.com/embed/dwA3MFDwhoA" title="Beautiful Material 3 UI with Flutter and VelocityX | Flutter 3.10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;" allowfullscreen></iframe> */}
             {notesdata.length > 0 ? (
-              <div style={{  display: "flex",flexDirection:'column',width:'100%' , border:'2px solid red'}}>
-                {notesdata.map((i, index) => {
-                  return (
-                    <div style={{  display: "flex", gap: "10" , border:'2px solid yellow'}}>
-                      <p>{index+1}</p>
-                      <p>{i.branch}</p>
-                      <p>{i.year}</p>
-                      <p>{i.subject}</p>
-                      <p>{i.unit}</p>
-                      <a href={`${i.pdfUrl}`}>Pdf Link</a>
-                    </div>
-                  );
-                })}
-              </div>
+              <>
+                <div className="d-flex justify-content-around align-items-center border rounded border-secondary">
+                  {notesdata.map((i, index) => {
+                    return (
+                      <>
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe
+                            class="embed-responsive-item"
+                            src={`${i.pdfUrl}`}
+                            allowfullscreen
+                            title={`${i.index}`}
+                          ></iframe>
+                        </div>
+                        <div class="card" style={{ width: "18rem" }}>
+                          <div class="card-body">
+                            <h5 class="card-title">
+                              {index + 1}. {i.subject}
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                              Unit -{i.unit}
+                            </h6>
+                            <p class="card-text">
+                              Some quick example text to build on the card title
+                              and make up the bulk of the card's content.
+                            </p>
+                            <a href={`${i.pdfUrl}`}>Pdf Link</a>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })}
+                </div>
+              </>
             ) : (
               <div>
-                <h1>No notes found</h1></div>
+                <img
+                  src="https://cdn-bbeoo.nitrocdn.com/qmCVQYRCWGzHArsQEaxlonBAyCtBBIUq/assets/images/optimized/rev-468a123/wp-content/uploads/elementor/thumbs/no-result-found-plzjaev368yh9z4dtefdm0dh8ryyv1dn832r9dy1b4.jpg"
+                  height="200px"
+                  width="400px"
+                  alt="img"
+                  bo
+                ></img>
+                {/* <h1>No notes found</h1> */}
+              </div>
             )}
           </>
         )}

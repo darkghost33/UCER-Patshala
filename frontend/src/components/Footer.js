@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <div>
         <footer style={{background: "lightblue"}}>
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-9">
                     <p>&copy; E-PathShala. All Rights Reserved.</p>

@@ -10,7 +10,7 @@ export default function TestResult(props) {
         <br />
         Total Score:{props.totalScore}
       </div>
-
+      
       <Link to={"/userData"} style={{ textDecoration: "none" }}>
         <button id="go-back-btn">
           <FontAwesomeIcon

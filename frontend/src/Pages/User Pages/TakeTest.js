@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TestData } from "./TestData";
 import TestResult from "./TestResult";
 import "../../css/TestPage.css";
+import Navbar from "../../components/Navbar";
+import { toast, ToastContainer } from "../../components/Toastify";
 
 const TEST_DURATION = 15;
 
@@ -28,7 +30,8 @@ export default function TakeTest() {
       } else {
         setIsTabVisible(false);
         endTest();
-        alert("The test has ended as you have switched tabs.");
+        toast.error("The test has ended as you have switched tabs.")
+        // alert("The test has ended as you have switched tabs.");
       }
     };
 
@@ -79,7 +82,13 @@ export default function TakeTest() {
   };
 
   return (
+    <>
+    <Navbar menuItems={["Home", "About", "WebCode", "Contact"]}
+        loginText="Welcome User"></Navbar>
+    
     <div className="wrapper">
+    <ToastContainer autoClose={2000} position="top-center" closeButton={false}></ToastContainer>
+      
       <p className="heading-txt">TEST</p>
       <div className="container">
         {!testStarted ? (
@@ -146,5 +155,6 @@ export default function TakeTest() {
         )}
       </div>
     </div>
+    </>
   );
 }

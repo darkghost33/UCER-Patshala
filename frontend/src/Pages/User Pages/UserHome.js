@@ -1,6 +1,6 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 export default function UserHome({ userData }) {
   const logOut = () => {
@@ -9,6 +9,10 @@ export default function UserHome({ userData }) {
   };
   return (
     <div className="auth-wrapper">
+      <Navbar
+        menuItems={["Home", "About", "WebCode", "Contact"]}
+        loginText={`Welcome ${userData.fname}`}
+      ></Navbar>
       <div className="auth-inner">
         <div
           className=""
@@ -20,12 +24,14 @@ export default function UserHome({ userData }) {
             alignItems: "center",
           }}
         >
-          
-         User - Name<h1>{userData.fname}</h1>
+          User - Name<h1>{userData.fname}</h1>
           Email<h1>{userData.email}</h1>
           <Link to={"/takeTest"}>
             <button className="btn btn-primary">Take Test</button>
-          </Link> 
+          </Link>
+          <Link to={"/threesections"}>
+            <button className="btn btn-primary">Three Sections Page</button>
+          </Link>
           <Link to={"/notes"}>
             <button className="btn btn-primary">Notes</button>
           </Link>
@@ -43,4 +49,3 @@ export default function UserHome({ userData }) {
     </div>
   );
 }
-

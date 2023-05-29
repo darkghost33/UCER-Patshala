@@ -16,6 +16,7 @@ import UserFindAllPdf from './Pages/User Pages/UserFindAllPdf'
 import TakeTest from './Pages/User Pages/TakeTest'
 import WebCode from './Pages/CodeEditor/WebCode'
 import NotesPage from './Pages/User Pages/NotesPage'
+import ThreeSectionPage from './Pages/User Pages/ThreeSectionPage'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
     <>
     <Router>      
       <Routes>
-        <Route exact path="/" element={isLoggedIn === "true" ? <NextPage/> : <Home/>} />
+        <Route exact path="/" element={<Home/>} />
         <Route path="/sign-in" element={isLoggedIn === "true" ? <NextPage/> : <Login />} />
         <Route path="/sign-up" element={isLoggedIn === "true" ? <NextPage/> : <SignUp />} />
         <Route path="/userData" element={isLoggedIn === "true" ? <NextPage/> : <Home />} />
@@ -40,6 +41,8 @@ function App() {
         <Route path="/takeTest" element={isLoggedIn === "true" ? <TakeTest/> : <Home />} />
         <Route path="/notes" element={isLoggedIn === "true" ? <NotesPage/> : <Home />} />
         <Route path="/webCode" element={<WebCode/>} />
+        <Route path="/threesections" element={<ThreeSectionPage></ThreeSectionPage>} />
+        
       </Routes>
     </Router>
     </>

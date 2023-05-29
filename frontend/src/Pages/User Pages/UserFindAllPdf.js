@@ -4,6 +4,7 @@ import "../../css/auth_css.css";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 export default function ViewAllUploadedPdf() {
   const [data, setData] = useState([]);
@@ -35,6 +36,10 @@ export default function ViewAllUploadedPdf() {
 
   return (
     <div className="App">
+      <Navbar
+        menuItems={["Home", "About", "WebCode", "Contact"]}
+        loginText="Welcome User"
+      ></Navbar>
       <div className="auth-wrapper">
         <div
           className="auth-inner"
@@ -42,7 +47,8 @@ export default function ViewAllUploadedPdf() {
             width: "auto",
             display: "flex",
             flexDirection: "column",
-            position: "relative",            
+            position: "relative",
+            marginTop: "200px",
           }}
         >
           <Link to={"/userData"} style={{ textDecoration: "none" }}>
@@ -63,31 +69,35 @@ export default function ViewAllUploadedPdf() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <table style={{ width: 500, border: "2px solid black" }}>
-            <tr>
-              <th>Entry No.</th>
-              <th>Branch</th>
-              <th>Year</th>
-              <th>Subject</th>
-              <th>Unit</th>
-              <th>Pdf Preview</th>
-              <th>Pdf Link</th>
-            </tr>
-            {filteredData.map((i, index) => {
-              return (
-                <tr key={i._id} style={{ border: "2px solid black" }}>
-                  <td>{index + 1}</td>
-                  <td>{i.branch}</td>
-                  <td>{i.year}</td>
-                  <td>{i.subject}</td>
-                  <td>{i.unit}</td>
-                  <iframe title="preview" src={i.pdfUrl}></iframe>
-                  <td>
-                    <a href={i.pdfUrl}>Link to Pdf File</a>
-                  </td>
-                </tr>
-              );
-            })}
+          <table className="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">Entry No.</th>
+                <th scope="col">Branch</th>
+                <th scope="col">Year</th>
+                <th scope="col">Subject</th>
+                <th scope="col">Unit</th>
+                <th scope="col">Pdf Preview</th>
+                <th scope="col">Pdf Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((i, index) => {
+                return (
+                  <tr key={i._id}>
+                    <th scope="row">{index + 1}</th>
+                    <td>{i.branch}</td>
+                    <td>{i.year}</td>
+                    <td>{i.subject}</td>
+                    <td>{i.unit}</td>
+                    <iframe title="preview" src={i.pdfUrl}></iframe>
+                    <td>
+                      <a href={i.pdfUrl}>Link to Pdf File</a>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
           <button onClick={logOut} className="btn btn-primary">
             Log Out

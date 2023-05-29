@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 export default function AdminHome({ userData }) {
   const logOut = () => {
     window.localStorage.clear();
@@ -7,6 +8,10 @@ export default function AdminHome({ userData }) {
   };
   return (
     <div className="App">
+      <Navbar
+        menuItems={["Home",]}
+        loginText={`Welcome Admin ${userData.fname}`}
+      ></Navbar>
       <div className="auth-wrapper">
         <div
           className="auth-inner"

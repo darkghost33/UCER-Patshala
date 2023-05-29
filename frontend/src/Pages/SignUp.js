@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/auth_css.css";
 import { toast, ToastContainer } from "../components/Toastify";
+import Navbar from "../components/Navbar";
 export default function SignUp() {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
@@ -27,7 +28,7 @@ export default function SignUp() {
           lname,
           email,
           password,
-          userType
+          userType,
         }),
       })
         .then((res) => res.json())
@@ -37,10 +38,12 @@ export default function SignUp() {
             toast.success("Registeration Successful");
             // alert("Registeration Successful");
             setTimeout(() => {
-            window.location.href = "./sign-in";
-          },2000);
+              window.location.href = "./sign-in";
+            }, 2000);
           } else {
-            toast.error("User already exists.Try registering with another email.");
+            toast.error(
+              "User already exists.Try registering with another email."
+            );
             // alert("User already exists.Try registering with another email.");
           }
         });
@@ -49,30 +52,45 @@ export default function SignUp() {
 
   return (
     <div className="App">
-      <ToastContainer autoClose={1500} position="top-center" closeButton={false}></ToastContainer>
+      <Navbar
+        menuItems={["Home", "About", "WebCode", "Contact"]}
+        loginText=""
+      />
+      <ToastContainer
+        autoClose={1500}
+        position="top-center"
+        closeButton={false}
+      ></ToastContainer>
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form onSubmit={handleSubmit}>
             <h3>Sign Up</h3>
-            <div>
-              Register As
-              <input
-                type="radio"
-                name="UserType"
-                value="User"
-                required
-                onChange={(e) => setUserType(e.target.value)}
-              />
-              User
-              <input
-                type="radio"
-                name="UserType"
-                value="Admin"
-                required
-                onChange={(e) => setUserType(e.target.value)}
-              />
-              Admin
+            <div className="d-flex align-items-center">
+              <span className="mr-3">Register As:</span>
+              <div className="form-check mx-3 m-2">
+                <input
+                  type="radio"
+                  className="form-check-input"
+                  name="UserType"
+                  value="User"
+                  required
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                <label className="form-check-label">User</label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  className="form-check-input"
+                  name="UserType"
+                  value="Admin"
+                  required
+                  onChange={(e) => setUserType(e.target.value)}
+                />
+                <label className="form-check-label">Admin</label>
+              </div>
             </div>
+
             {userType === "Admin" ? (
               <div className="mb-3">
                 <label>Secret Key</label>
