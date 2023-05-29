@@ -1,5 +1,6 @@
 .top-pane {
     background-color: #060606;
+    margin-top: 70px;
   
   }
   
@@ -7,6 +8,7 @@
     height: 50vh;
     width: 100%;
     display: flex;
+    
   
   }
   

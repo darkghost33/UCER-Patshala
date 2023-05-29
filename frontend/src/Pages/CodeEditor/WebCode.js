@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Editor from "./CodeEditor";
 import '../../css/CodeEditor.css'
+import Navbar from "../../components/Navbar";
 const WebCode = () => {
   const [html, setHtml] = useState("<h1>Just type your code to see changes in real time </h1>");
   const [css, setCss] = useState("");
@@ -31,6 +32,12 @@ const WebCode = () => {
   console.log(html, css, js);
   return (
     <>
+    <div>
+    <Navbar
+        menuItems={["Home", "About","Contact"]}
+        loginText="Login/SignUp"
+      />
+    </div>
         <div className="pane top-pane">
           <Editor
             language={"html"}
